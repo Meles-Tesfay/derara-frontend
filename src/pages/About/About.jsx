@@ -34,7 +34,7 @@ const About = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-[80vh] flex items-center overflow-hidden">
+      <section className="relative w-full min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img
             src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1920&q=80"
@@ -76,11 +76,11 @@ const About = () => {
       </section>
 
       {/* Company Overview & Mission */}
-      <section className="relative pt-10 pb-10 md:pb-32 bg-[#FDFCF8] dark:bg-[#0a0a0a] overflow-hidden">
+      <section className="relative pt-12 pb-8 md:pb-16 bg-[#FDFCF8] dark:bg-[#0a0a0a] overflow-hidden">
         <div className="absolute top-1/2 left-0 w-[800px] h-[800px] bg-red-50/50 dark:bg-red-900/5 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 -z-0" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -143,13 +143,13 @@ const About = () => {
         </div>
       </section>
 
-      {/* Meet Our Founder Section */}
-      <section className="relative py-16 md:py-28 bg-[#FFFDF9] dark:bg-[#0d0d0d] overflow-hidden border-t border-gray-100 dark:border-white/5">
+      {/* Founder Profile Section */}
+      <section className="relative py-10 md:py-16 bg-[#FFFDF9] dark:bg-[#0d0d0d] overflow-hidden border-t border-gray-100 dark:border-white/5">
         {/* Subtle decorative background circle */}
         <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-amber-100/40 dark:bg-amber-900/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/2 -z-0" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* Founder Image Column */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -188,15 +188,6 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="lg:col-span-7 space-y-8"
             >
-              <div>
-                <span className="text-amber-600 font-black uppercase tracking-[0.4em] text-xs mb-4 block">
-                  The Visionary
-                </span>
-                <h2 className="text-4xl md:text-5xl font-black text-[#3B2E24] dark:text-white leading-tight font-serif">
-                  Meet Our Founder
-                </h2>
-              </div>
-
               {/* Founder Quote */}
               <div className="relative p-8 bg-amber-500/5 dark:bg-amber-900/10 rounded-3xl border border-amber-500/10 italic">
                 <Quote className="absolute top-4 left-4 w-8 h-8 text-amber-500/20 transform rotate-180" />
@@ -230,12 +221,12 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="relative z-10 bg-white dark:bg-[#050505] py-10 md:py-32 px-6 md:px-20 border-y border-gray-100 dark:border-white/5">
+      <section className="relative z-10 bg-white dark:bg-[#050505] py-10 md:py-16 px-6 md:px-16 border-y border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-center mb-24"
+            className="text-center mb-16"
           >
             <span className="text-amber-600 font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">
               What Drives Us
@@ -281,7 +272,7 @@ const About = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="group relative flex flex-col bg-white dark:bg-white/5 rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-white/10"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
                   <img
                     src={value.image}
                     alt={value.title}
@@ -301,9 +292,9 @@ const About = () => {
       </section>
 
       {/* Coffee Regions */}
-      <section className="hidden md:block relative py-32 px-6 md:px-20 bg-[#FDFCF8] dark:bg-[#0a0a0a] overflow-hidden">
+      <section className="hidden md:block relative py-12 md:py-16 px-6 md:px-16 bg-[#FDFCF8] dark:bg-[#0a0a0a] overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
