@@ -107,13 +107,13 @@ const Products = () => {
                 <div className="p-6 pt-5 flex-1 flex flex-col justify-between">
                   <div className="space-y-4">
                     {/* Process Type Badge */}
-                    <p className="text-[#C66B44] dark:text-amber-400 font-extrabold tracking-[0.15em] uppercase text-[10px] flex items-center gap-2">
-                      <span className="w-1.5 h-[1.5px] bg-[#C66B44] dark:bg-amber-400" />
+                    <p className="text-red-600 dark:text-red-400 font-extrabold tracking-[0.15em] uppercase text-[10px] flex items-center gap-2">
+                      <span className="w-1.5 h-[1.5px] bg-red-600 dark:bg-red-400" />
                       {product.type}
                     </p>
 
                     {/* Title */}
-                    <h2 className="text-2xl font-black text-gray-900 dark:text-white leading-tight font-serif group-hover:text-[#C66B44] dark:group-hover:text-amber-400 transition-colors duration-300">
+                    <h2 className="text-2xl font-black text-gray-900 dark:text-white leading-tight font-serif group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">
                       {product.name}
                     </h2>
 
@@ -140,7 +140,7 @@ const Products = () => {
                   <button
                     type="button"
                     onClick={() => openProduct(product)}
-                    className="w-full mt-5 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#C66B44] to-[#E28743] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl hover:from-[#A55233] hover:to-[#C66B44] transition-all duration-300 shadow-[0_4px_12px_rgba(198,107,68,0.15)] hover:shadow-[0_8px_20px_rgba(198,107,68,0.3)] active:scale-[0.98] transform active:translate-y-0"
+                    className="w-full mt-5 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-red-600 to-rose-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl hover:from-red-700 hover:to-rose-600 transition-all duration-300 shadow-[0_4px_12px_rgba(220,38,38,0.15)] hover:shadow-[0_8px_20px_rgba(220,38,38,0.3)] active:scale-[0.98] transform active:translate-y-0"
                   >
                     Inquire Now
                   </button>
@@ -222,7 +222,7 @@ const Products = () => {
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-gray-100 dark:border-white/10">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                             <MapPin className="w-5 h-5" />
                           </div>
                           <div>
@@ -232,7 +232,7 @@ const Products = () => {
                         </div>
                         
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                             <Award className="w-5 h-5" />
                           </div>
                           <div>
@@ -242,7 +242,7 @@ const Products = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                             <Flame className="w-5 h-5" />
                           </div>
                           <div>
@@ -270,7 +270,7 @@ const Products = () => {
                         <button
                           type="button"
                           onClick={() => setShowForm(true)}
-                          className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#C66B44] text-white font-bold rounded-xl hover:bg-[#A55233] hover:shadow-[0_10px_30px_rgba(198,107,68,0.4)] hover:-translate-y-1 transition-all duration-300 shadow-xl"
+                          className="flex-1 flex items-center justify-center gap-2 py-4 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 hover:shadow-[0_10px_30px_rgba(220,38,38,0.4)] hover:-translate-y-1 transition-all duration-300 shadow-xl"
                         >
                           <Mail className="w-5 h-5" />
                           Submit Request
@@ -389,7 +389,7 @@ const Products = () => {
                       <button
                         type="submit"
                         disabled={formStatus === "submitting"}
-                        className="w-full py-4 mt-auto bg-[#C66B44] text-white font-bold rounded-xl hover:bg-[#A55233] hover:-translate-y-1 transition-all duration-300 shadow-xl flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full py-4 mt-auto bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 hover:-translate-y-1 transition-all duration-300 shadow-xl flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                       >
                         {formStatus === "submitting" ? (
                           "Sending Request..."
