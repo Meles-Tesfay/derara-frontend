@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Sparkles } from "lucide-react";
+import { CheckCircle, Sparkles, MapPin, HeartHandshake, Sprout, Sun, Droplet, Star, Flame, Quote } from "lucide-react";
 import DeraraImage from "../../assets/10001.jpg";
 import logistics from "../../assets/logistics.jpg";
 import exemplary from "../../assets/exemplery.jpg";
@@ -8,8 +8,22 @@ import integrity from "../../assets/integrity.jpg";
 import { Link } from "react-router-dom";
 
 const About = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [aboutData, setAboutData] = useState(null);
 
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/ops/about`);
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setAboutData(data[0]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch founder details from API:", err);
+      }
+    };
+    fetchAboutData();
+  }, []);
   return (
     <div className="relative min-h-screen bg-[#FDFCF8] dark:bg-[#0a0a0a] text-gray-900 dark:text-white selection:bg-red-500/30 overflow-hidden">
       {/* Animated Background */}
@@ -20,35 +34,45 @@ const About = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center text-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1920&q=80"
-          alt="Ethiopian Coffee Highlands"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
+      <section className="relative w-full min-h-[80vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1920&q=80"
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Dark gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/30" />
 
-        <div className="relative z-10 max-w-5xl px-4 pt-48 pb-20 mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-black mb-10 tracking-tight leading-[1.1]">
-            <span className="text-white drop-shadow-lg">Delivering</span>{" "}
-            <span className="text-white/90 drop-shadow-lg">The World's Finest</span>
-            <br className="hidden lg:block" />
-            <span className="block mt-4 text-[#A37D5C]">Ethiopian Arabica</span>
-            <span className="text-white drop-shadow-lg"> Coffee</span>
-          </h1>
-          <p className="text-lg md:text-2xl text-white/80 font-medium mb-12 max-w-3xl mx-auto drop-shadow-md">
-            From the birthplace of coffee to global markets — rooted in heritage, crafted with precision.
-          </p>
+          <div className="relative z-10 max-w-7xl px-6 pt-20 pb-10 mx-auto h-full flex flex-col justify-center text-left w-full">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-[#d3cec4] leading-tight font-serif"
+            >
+              Experience <br /> the Art of Coffee.
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "60px" }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="h-[2px] bg-white/40 mb-6"
+            />
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-base md:text-lg text-[#9a9488] font-medium mb-10 max-w-md"
+            >
+              Enjoy our premium selection of handcrafted coffee beans, brewed to perfection.
+            </motion.p>
 
-          <Link
-            to="/contact"
-            className="inline-block bg-[#2D543F] text-white text-lg font-bold px-14 py-5 rounded-full shadow-2xl transition duration-300 ease-in-out hover:bg-[#A37D5C] transform hover:scale-105 active:scale-95"
-          >
-            Request a Quote
-          </Link>
+          </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#FDFCF8] dark:to-[#0a0a0a] z-20"></div>
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#FDFCF8] dark:to-[#0a0a0a] z-20 pointer-events-none"></div>
       </section>
 
       {/* Company Overview & Mission */}
@@ -65,23 +89,19 @@ const About = () => {
             >
               <div>
                 <span className="text-[#A37D5C] font-black uppercase tracking-[0.4em] text-xs mb-4 block">
-                  Our Heritage
+                  Our Story
                 </span>
                 <h2 className="text-5xl md:text-6xl font-black text-[#3B2E24] dark:text-white leading-none font-serif">
-                  Who We Are
+                  Our Roots
                 </h2>
               </div>
 
-              <div className="space-y-6 text-xl text-[#3B2E24] dark:text-gray-300 leading-relaxed font-medium">
+              <div className="space-y-6 text-xl text-[#3B2E24] dark:text-white leading-relaxed font-bold">
                 <p className="border-l-4 border-amber-500 pl-8 py-2">
-                  We are a global Ethiopian coffee export company deeply committed to preserving the integrity of
-                  single-origin Arabica. Our lineage connects us directly to the ancient coffee forests of Ethiopia,
-                  the world's original source.
+                  We're a team passionate about sharing the real taste of Ethiopian coffee. We don't just export beans; we're deeply connected to the local farmers and the ancient coffee forests where it all started.
                 </p>
                 <p className="opacity-80">
-                  Our operations are founded on three pillars: complete transparency from farm to ship, uncompromising
-                  quality excellence validated by SCA standards, and sustainable, ethical partnerships with smallholder
-                  farmers who are the custodians of this heritage.
+                  For us, it's all about keeping things real. We believe in being totally open about where our coffee comes from, making sure every bean is top-notch, and building strong, fair relationships with the farmers who make it all possible.
                 </p>
               </div>
             </motion.div>
@@ -96,25 +116,114 @@ const About = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl group-hover:scale-125 transition-transform duration-700" />
 
               <h3 className="text-3xl font-serif italic mb-10 text-amber-600 dark:text-amber-400">
-                Our Sacred Commitment
+                Our Promise
               </h3>
               <ul className="space-y-8">
                 {[
-                  { title: "Provenance", desc: "Full traceability from specific washing stations." },
-                  { title: "Price Integrity", desc: "Above-market returns ensuring farmer prosperity." },
-                  { title: "Eco-Harvest", desc: "Minimal impact natural farming practices." },
-                ].map((item, idx) => (
-                  <li key={idx} className="flex gap-6 group/item">
-                    <div className="w-12 h-12 rounded-full border border-amber-500/30 flex items-center justify-center shrink-0 group-hover/item:bg-amber-500/20 transition-colors">
-                      <CheckCircle className="w-5 h-5 text-amber-600 dark:text-amber-500" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg mb-1">{item.title}</h4>
-                      <p className="text-gray-600 dark:text-white/60 text-sm leading-relaxed">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
+                  { title: "Know Your Coffee", desc: "We trace every bean back to the exact washing station.", icon: MapPin },
+                  { title: "Fair Pricing", desc: "We pay farmers fairly so they can thrive, not just survive.", icon: HeartHandshake },
+                  { title: "Earth Friendly", desc: "Growing coffee in harmony with nature.", icon: Sprout },
+                ].map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={idx} className="flex gap-6 group/item">
+                      <div className="w-12 h-12 rounded-full border border-amber-500/30 flex items-center justify-center shrink-0 group-hover/item:bg-amber-500/20 transition-colors">
+                        <Icon className="w-5 h-5 text-amber-600 dark:text-amber-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-1">{item.title}</h4>
+                        <p className="text-gray-800 dark:text-white/90 text-sm leading-relaxed font-semibold">{item.desc}</p>
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Founder Section */}
+      <section className="relative py-16 md:py-28 bg-[#FFFDF9] dark:bg-[#0d0d0d] overflow-hidden border-t border-gray-100 dark:border-white/5">
+        {/* Subtle decorative background circle */}
+        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-amber-100/40 dark:bg-amber-900/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/2 -z-0" />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Founder Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-5 relative"
+            >
+              {/* Premium Frame styling */}
+              <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white dark:border-[#1E1A15] group">
+                <img
+                  src={aboutData?.image || DeraraImage}
+                  alt={aboutData?.name || "Tekle T."}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Decorative Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+
+                {/* Name / Role Badges inside photo on mobile / absolute positioning */}
+                <div className="absolute bottom-6 left-6 right-6 text-white block lg:hidden">
+                  <p className="font-serif italic text-2xl mb-1">{aboutData?.name || "Tekle T."}</p>
+                  <p className="text-amber-400 font-bold uppercase tracking-widest text-xs">{aboutData?.role || "Founder & CEO"}</p>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl -z-10" />
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-amber-600/5 rounded-full blur-xl -z-10" />
+            </motion.div>
+
+            {/* Founder Details Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-7 space-y-8"
+            >
+              <div>
+                <span className="text-amber-600 font-black uppercase tracking-[0.4em] text-xs mb-4 block">
+                  The Visionary
+                </span>
+                <h2 className="text-4xl md:text-5xl font-black text-[#3B2E24] dark:text-white leading-tight font-serif">
+                  Meet Our Founder
+                </h2>
+              </div>
+
+              {/* Founder Quote */}
+              <div className="relative p-8 bg-amber-500/5 dark:bg-amber-900/10 rounded-3xl border border-amber-500/10 italic">
+                <Quote className="absolute top-4 left-4 w-8 h-8 text-amber-500/20 transform rotate-180" />
+                <p className="text-lg md:text-xl font-serif text-amber-900 dark:text-amber-300 leading-relaxed pl-6 pt-2 font-medium">
+                  "{aboutData?.quote || "For us, coffee has never been just a commodity—it is a language of gathering, of respect, and of shared warmth. We built Derara to connect the extraordinary farmers of our highlands directly to the global stage, ensuring their stories are heard in every single cup."}"
+                </p>
+              </div>
+
+              {/* Biography / Description */}
+              <div className="space-y-6 text-gray-700 dark:text-gray-200 leading-relaxed text-base md:text-lg font-medium">
+                <p className="opacity-90">
+                  {aboutData?.description || "Tekle T. didn't just set out to start an export business; he wanted to share a piece of his home. Growing up in the lush coffee-growing regions of Ethiopia, the sound of crackling beans over a small brazier and the ceremony of gathering was a natural part of daily life. To him, coffee represents community, dedication, and connection."}
+                </p>
+                <p className="opacity-90">
+                  {aboutData?.description ? null : "He founded Derara with a singular focus: to build a direct and honest bridge between smallholder farming families across Yirgacheffe, Sidama, and Guji, and coffee enthusiasts worldwide. Tekle spends months each year in the field, working alongside growers, listening to their challenges, and ensuring that they are fairly rewarded for their incredible work. He believes that true specialty coffee can only exist when the hands that grow it are honored and empowered."}
+                </p>
+              </div>
+
+              {/* Name & Role Sign-off (Desktop only) */}
+              <div className="hidden lg:block pt-4 border-t border-gray-100 dark:border-white/5">
+                <h4 className="font-serif italic text-3xl text-[#3B2E24] dark:text-white">
+                  {aboutData?.name || "Tekle T."}
+                </h4>
+                <p className="text-amber-600 font-extrabold uppercase tracking-widest text-xs mt-1">
+                  {aboutData?.role || "Founder & CEO"}
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -129,10 +238,10 @@ const About = () => {
             className="text-center mb-24"
           >
             <span className="text-amber-600 font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">
-              Foundational Values
+              What Drives Us
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-[#3B2E24] dark:text-white font-serif">
-              Built on Principles of Excellence
+              How We Do Things
             </h2>
           </motion.div>
 
@@ -140,27 +249,27 @@ const About = () => {
             {[
               {
                 id: "01",
-                title: "Exemplary Quality Standards",
-                desc: "Every lot undergoes stringent Q-Grade verification by certified experts, ensuring only defect-free, high-scoring beans are approved for global distribution.",
+                title: "Obsessed with Quality",
+                desc: "We're pretty picky. Our experts cup and score every batch to make sure you're getting only the best, defect-free beans.",
                 image: exemplary,
               },
               {
                 id: "02",
-                title: "Sustainable Integrity",
-                desc: "We drive community prosperity through ethical sourcing models that prioritize direct trade equity and regenerative agricultural practices.",
+                title: "Doing the Right Thing",
+                desc: "We care about the people and the planet. That means trading directly with farmers and supporting farming methods that give back to the earth.",
                 image: integrity,
               },
               {
                 id: "03",
-                title: "Transparent Provenance",
-                desc: "Our integrated supply chain provides verifiable traceability from the washing station to the final shipment, guaranteeing authentic origin assurance.",
+                title: "Nothing to Hide",
+                desc: "We track our coffee every step of the way, so you know exactly what's in your cup and where it came from.",
                 image:
                   "https://images.unsplash.com/photo-1610632380989-680fe40816c6?auto=format&fit=crop&w=800&q=80",
               },
               {
                 id: "04",
-                title: "Precision Logistics",
-                desc: "Leveraging robust global networks, we ensure temperature-controlled, timely delivery of your shipments, preserving freshness from port to warehouse.",
+                title: "Freshness Delivered",
+                desc: "We've got the logistics down to an art. We make sure our coffee travels safely and stays fresh until it reaches you.",
                 image: logistics,
               },
             ].map((value, idx) => (
@@ -183,7 +292,7 @@ const About = () => {
                   <h3 className="text-2xl font-black text-[#3B2E24] dark:text-white font-serif leading-tight mb-4">
                     {value.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed font-medium">{value.desc}</p>
+                  <p className="text-gray-800 dark:text-gray-100 text-sm leading-relaxed font-bold">{value.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -202,15 +311,14 @@ const About = () => {
               className="space-y-8"
             >
               <span className="text-amber-600 font-black uppercase tracking-[0.5em] text-[10px] block">
-                Regional Significance
+                Where the Magic Happens
               </span>
               <h2 className="text-5xl md:text-6xl font-black text-[#3B2E24] dark:text-white font-serif leading-none">
-                Regional <br />
-                <span className="text-[#A37D5C]">Flavor Signatures</span>
+                Explore <br />
+                <span className="text-[#A37D5C]">Our Regions</span>
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 font-medium leading-relaxed">
-                Ethiopia's vast landscape offers a kaleidoscope of profiles. Each region we source from carries its own
-                unique flavor signature — from bright, wild floral notes to deep, complex winey undertones.
+              <p className="text-xl text-gray-800 dark:text-gray-200 font-bold leading-relaxed">
+                Every region in Ethiopia brings something special to the table. From bright, floral notes to deep, rich flavors, there's a whole world of taste to explore.
               </p>
             </motion.div>
 
@@ -227,7 +335,7 @@ const About = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#3B2E24]/60 to-transparent" />
               <div className="absolute bottom-8 left-8">
-                <p className="text-white font-serif italic text-2xl">"The Soul of Ethiopian Heritage"</p>
+                <p className="text-white font-serif italic text-2xl">"The Heart of Ethiopian Coffee"</p>
               </div>
             </motion.div>
           </div>
@@ -237,44 +345,51 @@ const About = () => {
               {
                 region: "Yirgacheffe",
                 process: "Washed/Natural",
-                desc: "Highly aromatic, intensely floral (jasmine), bright lemon acidity, delicate body.",
+                desc: "Famous for its intense floral scent, bright lemony acidity, and light body.",
+                icon: Sun,
               },
               {
                 region: "Sidama",
                 process: "Washed/Natural",
-                desc: "Balanced, complex notes of stone fruit, herbal tea, smoothly rounded body.",
+                desc: "A beautifully balanced cup with hints of stone fruit, herbal tea, and a smooth finish.",
+                icon: Droplet,
               },
               {
                 region: "Guji",
                 process: "Natural",
-                desc: "Pronounced tropical fruit, ripe red berry sweetness, chocolate undertones.",
+                desc: "Expect bold tropical fruit flavors, sweet berry notes, and a touch of chocolate.",
+                icon: Star,
               },
               {
                 region: "Harrar",
                 process: "Natural (Dry)",
-                desc: "Distinctive winey acidity, intense wild berry, classic sun-dried spice.",
+                desc: "Known for its unique wine-like acidity, wild berry flavors, and classic spicy notes.",
+                icon: Flame,
               },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group p-8 bg-white dark:bg-white/5 rounded-3xl border border-gray-100 dark:border-white/10 hover:border-amber-500/50 transition-all duration-300"
-              >
-                <div className="flex justify-between items-start mb-6">
-                  <h4 className="text-2xl font-serif text-[#3B2E24] dark:text-white group-hover:text-amber-600 transition-colors">
-                    {item.region}
-                  </h4>
-                  <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4 text-amber-600" />
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group p-8 bg-white dark:bg-white/5 rounded-3xl border border-gray-100 dark:border-white/10 hover:border-amber-500/50 transition-all duration-300"
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <h4 className="text-2xl font-serif text-[#3B2E24] dark:text-white group-hover:text-amber-600 transition-colors">
+                      {item.region}
+                    </h4>
+                    <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-amber-600" />
+                    </div>
                   </div>
-                </div>
-                <p className="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-4">{item.process}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium">{item.desc}</p>
-              </motion.div>
-            ))}
+                  <p className="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-4">{item.process}</p>
+                  <p className="text-gray-800 dark:text-gray-200 text-sm leading-relaxed font-bold">{item.desc}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
